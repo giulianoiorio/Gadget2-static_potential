@@ -137,7 +137,7 @@ double *Static_Force(double x, double y, double z)
 
 double Static_Potential(double x, double y, double z)
 {	
-	return 0;
+	return 1;
 }
 #endif
 
