@@ -323,7 +323,7 @@ void gravity_tree(void)
         //debug print on file
         if(P[i].ID==0)
         {
-        fprintf(fofo1,"%i %f %f %f %f \n",P[i].ID,P[i].Pos[0],P[i].Pos[1],P[i].Pos[2],sqrt(P[i].Pos[0]*P[i].Pos[0]+P[i].Pos[1]*P[i].Pos[1]+P[i].Pos[2]*P[i].Pos[2]));
+        fprintf(fofo1,"%i %f %f %f %f \n",P[i].ID,P[i].Pos[0],P[i].Pos[1],P[i].Pos[2],sqrt(P[i].Pos[0]*P[i].Pos[0]+P[i].Pos[1]*P[i].Pos[1]));
     	}
         //
 
