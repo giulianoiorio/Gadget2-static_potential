@@ -85,10 +85,21 @@ double *HernquistForce(double x, double y, double z, double mass, double rc)
 	double r= sqrt(x*x+y*y+z*z);
 	static double F[3];
 	double cost= mass/(r*(rc+r)*(rc+r));
+	//double cost=0;
 	
+	if (r>0.0001) //To avoid divergence
+	{
 	F[0]=-x*cost;
 	F[1]=-y*cost;
 	F[2]=-z*cost;
+	}
+	else 
+	{
+	F[0]=0;
+	F[1]=0;
+	F[2]=0;	
+	}
+	
 	
 	return F;
 }
