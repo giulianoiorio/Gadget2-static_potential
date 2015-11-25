@@ -87,7 +87,7 @@ double *HernquistForce(double x, double y, double z, double mass, double rc)
 	double cost= mass/(r*(rc+r)*(rc+r));
 	//double cost=0;
 	
-	if (r>0.0001) //To avoid divergence
+	if (r>0.0001) //To avoid divergence, meglio metterci la lunghezza di softening per essere coerente
 	{
 	F[0]=-x*cost;
 	F[1]=-y*cost;
@@ -114,7 +114,7 @@ double *HernquistForce(double x, double y, double z, double mass, double rc)
 		{
 			case 0:
 			{
-				const double pointmass=1e11;
+				const double pointmass=(1e11*1.989*1e33)/(All.UnitMass_in_g); //To take in account the used Gadget unity
 				double *p;
 				p=KeplerForce(x, y, z, pointmass);
 				
@@ -126,15 +126,15 @@ double *HernquistForce(double x, double y, double z, double mass, double rc)
 			case 1:
 			{	
 				//disc
-				const double Mdisc=1e11;
-				const double a=6.5;
-				const double b=0.26;
+				const double Mdisc=(1e11*1.989*1e33)/(All.UnitMass_in_g); //To take in account the used Gadget unity
+				const double a=(6.5*3.085678e21)/(All.UnitLength_in_cm);
+				const double b=(0.26*3.085678e21)/(All.UnitLength_in_cm);
 				//bulge
-				const double Mbulge=3.4e10;
-				const double rc=0.7;
+				const double Mbulge=(3.4e10*1.989*1e33)/(All.UnitMass_in_g); 
+				const double rc=(0.7*3.085678e21)/(All.UnitLength_in_cm);;
 				//halo
-				const double vh=128*128*2;
-				const double rh=12;
+				const double vh=(128*128*2*1e10)/(All.UnitVelocity_in_cm_per_s*All.UnitVelocity_in_cm_per_s); //To take in account the used Gadget unity, in this cas the vel is vel^2.
+				const double rh=(12*3.085678e21)/(All.UnitLength_in_cm);;
 				const double q=1;
 				
 				double *p;
@@ -171,9 +171,9 @@ double *HernquistForce(double x, double y, double z, double mass, double rc)
 			
 			case 2:
 			{
-				const double discmass=10.0;
-				const double a=1.0;
-				const double b=1.0;
+				const double discmass=(1e10*1.989*1e33)/(All.UnitMass_in_g);
+				const double a=(1.0*3.085678e21)/(All.UnitLength_in_cm);
+				const double b=(1.0*3.085678e21)/(All.UnitLength_in_cm);
 				double *p;
 				p=MyamotoNagaiForce(x, y, z, a, b, discmass);
 				return p;
@@ -182,8 +182,8 @@ double *HernquistForce(double x, double y, double z, double mass, double rc)
 			
 			case 3:
 			{
-				const double vh=10.0;
-				const double rc=2.0;
+				const double vh=(100*100*2*1e10)/(All.UnitVelocity_in_cm_per_s*All.UnitVelocity_in_cm_per_s);
+				const double rc=(2.0*3.085678e21)/(All.UnitLength_in_cm);
 				const double q=1.0;
 				double *p;
 				p=LogartmicHaloForce(x, y, z, vh, rc, q);
@@ -200,7 +200,7 @@ double *HernquistForce(double x, double y, double z, double mass, double rc)
 		{
 			case 0:
 			{
-				const double pointmass=1e11;
+				const double pointmass=(1e11*1.989*1e33)/(All.UnitMass_in_g); //To take in account the used Gadget unity
 				return KeplerPotential(x, y, z, pointmass);
 				break;
 			}
@@ -209,15 +209,15 @@ double *HernquistForce(double x, double y, double z, double mass, double rc)
 			case 1:
 			{
 				//disc
-				const double Mdisc=1e11;
-				const double a=6.5;
-				const double b=0.26;
+				const double Mdisc=(1e11*1.989*1e33)/(All.UnitMass_in_g); //To take in account the used Gadget unity
+				const double a=(6.5*3.085678e21)/(All.UnitLength_in_cm);
+				const double b=(0.26*3.085678e21)/(All.UnitLength_in_cm);
 				//bulge
-				const double Mbulge=3.4e10;
-				const double rc=0.7;
+				const double Mbulge=(3.4e10*1.989*1e33)/(All.UnitMass_in_g); 
+				const double rc=(0.7*3.085678e21)/(All.UnitLength_in_cm);;
 				//halo
-				const double vh=128*2;
-				const double rh=12;
+				const double vh=(128*128*2*1e10)/(All.UnitVelocity_in_cm_per_s*All.UnitVelocity_in_cm_per_s); //To take in account the used Gadget unity, in this cas the vel is vel^2.
+				const double rh=(12*3.085678e21)/(All.UnitLength_in_cm);;
 				const double q=1;
 				
 
