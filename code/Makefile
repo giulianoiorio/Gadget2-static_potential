@@ -90,10 +90,12 @@ MPICHLIB =  -lmpich
 
 #--------------------------------------- Select target computer
 
+SYSTYPE="mio"
+#SYSTYPE="Galileo"
 #SYSTYPE="MPA"
 #SYSTYPE="Mako"
 #SYSTYPE="Regatta"
-SYSTYPE="RZG_LinuxCluster"
+#SYSTYPE="RZG_LinuxCluster"
 #SYSTYPE="RZG_LinuxCluster-gcc"
 #SYSTYPE="Opteron"
 
@@ -105,7 +107,7 @@ ifeq ($(SYSTYPE),"Galileo")
 CC       =  mpicc   
 OPTIMIZE =  -O3 -Wall
 GSL_INCL =  -I/cineca/prod/libraries/gsl/1.16/intel--cs-xe-2015--binary/include
-GSL_LIBS =  -L-I/cineca/prod/libraries/gsl/1.16/intel--cs-xe-2015--binary/lib
+GSL_LIBS =  -L/cineca/prod/libraries/gsl/1.16/intel--cs-xe-2015--binary/lib
 FFTW_INCL=  -I/cineca/prod/libraries/fftw/2.1.5/openmpi--1.8.4--gnu--4.9.2/include
 FFTW_LIBS=  -L/cineca/prod/libraries/fftw/2.1.5/openmpi--1.8.4--gnu--4.9.2/lib
 MPICHLIB =
@@ -113,7 +115,17 @@ HDF5INCL =
 HDF5LIB  =  
 endif
 
-
+ifeq ($(SYSTYPE),"mio")
+CC       =  mpicc   
+OPTIMIZE =  -O3 -Wall
+GSL_INCL =  -I/Users/Giuliano/Gadget/sist/gsl-install/include
+GSL_LIBS =  -L/Users/Giuliano/Gadget/sist/gsl-install/lib  -Wl
+FFTW_INCL= -I/Users/Giuliano/Gadget/sist/fftw-install/include
+FFTW_LIBS=  -L/Users/Giuliano/Gadget/sist/fftw-install/lib 
+MPICHLIB = -L/Users/Giuliano/Gadget/sist/mpich-install/lib 
+HDF5INCL =  -I/Users/Giuliano/Gadget/sist/hdf5-install/include
+HDF5LIB  = -L/Users/Giuliano/Gadget/sist/hdf5-install/lib -lhdf5 -lz 
+endif
 
 
 ifeq ($(SYSTYPE),"MPA")
@@ -207,7 +219,7 @@ OBJS   = main.o  run.o  predict.o begrun.o endrun.o global.o  \
 	 gravtree.o hydra.o  driftfac.o  \
 	 domain.o  allvars.o potential.o  \
          forcetree.o   peano.o gravtree_forcetest.o \
-	 pm_periodic.o pm_nonperiodic.o longrange.o 
+	 pm_periodic.o pm_nonperiodic.o longrange.o staticpotential.o
 
 INCL   = allvars.h  proto.h  tags.h  Makefile
 
