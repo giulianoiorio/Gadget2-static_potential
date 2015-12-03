@@ -7,6 +7,11 @@
 # Look at end of file for a brief guide to the compile-time options.   
 #----------------------------------------------------------------------
 
+#--------------------------------------- Static External Potential
+#0-Kepler
+#1-P07
+
+OPT   +=  -DEXTPOTENTIAL=1
 
 #--------------------------------------- Basic operation mode of code
 #OPT   +=  -DPERIODIC 

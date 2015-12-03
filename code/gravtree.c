@@ -304,8 +304,8 @@ void gravity_tree(void)
 
 #ifdef EXTPOTENTIAL
   double *static_force;
-  FILE *fofo1= fopen("part1.txt","a");
-  FILE *fofo2= fopen("part2.txt","a");
+  //FILE *fofo1= fopen("part1.txt","a");
+  //FILE *fofo2= fopen("part2.txt","a");
 
 
   for(i = 0; i < NumPart; i++)
@@ -316,15 +316,17 @@ void gravity_tree(void)
          static_force=Static_Force(P[i].Pos[0],P[i].Pos[1],P[i].Pos[2]);
           
         //debug comment
-        printf("i=%i X=%f Y=%f Z=%f R=%f \n",i,P[i].Pos[0],P[i].Pos[1],P[i].Pos[2],sqrt(P[i].Pos[0]*P[i].Pos[0]+P[i].Pos[1]*P[i].Pos[1]+P[i].Pos[2]*P[i].Pos[2]));
-        printf("Vel VX=%f VY=%f VZ=%f \n",P[i].Vel[0],P[i].Vel[1],P[i].Vel[2]);
+        //printf("i=%i X=%f Y=%f Z=%f R=%f \n",i,P[i].Pos[0],P[i].Pos[1],P[i].Pos[2],sqrt(P[i].Pos[0]*P[i].Pos[0]+P[i].Pos[1]*P[i].Pos[1]+P[i].Pos[2]*P[i].Pos[2]));
+        //printf("Vel VX=%f VY=%f VZ=%f \n",P[i].Vel[0],P[i].Vel[1],P[i].Vel[2]);
         //
           
         //debug print on file
+		/*
         if(P[i].ID==0)
         {
         fprintf(fofo1,"%i %f %f %f %f \n",P[i].ID,P[i].Pos[0],P[i].Pos[1],P[i].Pos[2],sqrt(P[i].Pos[0]*P[i].Pos[0]+P[i].Pos[1]*P[i].Pos[1]));
     	}
+		*/
         //
 
          P[i].GravAccel[0] += *(static_force)  ;
@@ -332,7 +334,7 @@ void gravity_tree(void)
          P[i].GravAccel[2] +=  *(static_force+2);
         
           //debug comment
-         printf("i=%i FX=%f FY=%f FZ=%f \n",i,*(static_force),*(static_force+1),*(static_force+2));
+         //printf("i=%i FX=%f FY=%f FZ=%f \n",i,*(static_force),*(static_force+1),*(static_force+2));
         
       }
 
@@ -340,8 +342,8 @@ void gravity_tree(void)
       
 
 
-fclose(fofo1);
-fclose(fofo2);
+//fclose(fofo1);
+//fclose(fofo2);
 #endif
 
 
@@ -375,14 +377,14 @@ fclose(fofo2);
   {
       if(P[i].Ti_endstep == All.Ti_Current)
       {
-          printf("Acc Prima i=%i FX=%e FY=%e FZ=%e G=%e \n",i,P[i].GravAccel[0],P[i].GravAccel[1],P[i].GravAccel[2], All.G);
+          //printf("Acc Prima i=%i FX=%e FY=%e FZ=%e G=%e \n",i,P[i].GravAccel[0],P[i].GravAccel[1],P[i].GravAccel[2], All.G);
       for(j = 0; j < 3; j++)
         {
 
           P[i].GravAccel[j] *= All.G;
             
         }
-       printf("Acc Dopo i=%i FX=%e FY=%e FZ=%e \n",i,P[i].GravAccel[0],P[i].GravAccel[1],P[i].GravAccel[2]);
+       //printf("Acc Dopo i=%i FX=%e FY=%e FZ=%e \n",i,P[i].GravAccel[0],P[i].GravAccel[1],P[i].GravAccel[2]);
       }
   }
 
